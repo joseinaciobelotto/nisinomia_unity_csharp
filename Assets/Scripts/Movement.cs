@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     public int x, y = 0;
     public Vector3 move;
     public Rigidbody2D rig;
+
     public int animHorizontal;
     public int animVertical;
     [SerializeField]  FixedJoystick joystickHere;
@@ -23,8 +24,8 @@ public class Movement : MonoBehaviour
  
 
     public Colision inColiPlacaCasaB;
-  
-        
+
+    
 
     public float sectionPlayerIsNow;
 
@@ -34,6 +35,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+      
          rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         inColiPlacaCasaB = FindAnyObjectByType<Colision>();

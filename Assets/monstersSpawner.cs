@@ -19,7 +19,7 @@ public class monsterSpawner : MonoBehaviour
     public float randomNumber;
     public int monstersAmout;
 
-
+    public DayCycle isNight;
 
 
     public int clientNumber;
@@ -62,8 +62,13 @@ public class monsterSpawner : MonoBehaviour
     private void Update()
     {
         monstersAmout = monsterPrefabs.Count;
-        randomNumber = Random.Range(0, monstersAmout);
-        clientSpawner2((int)randomNumber);
+
+        if (isNight == true)
+        {
+            randomNumber = Random.Range(0, monstersAmout);
+            clientSpawner2((int)randomNumber);
+        }
+       
     }
 
     void clientSpawner2(int prefabIndex)

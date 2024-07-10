@@ -53,3 +53,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: night
+    uniqueID: 1383205455
+    locked: 0
