@@ -5,21 +5,18 @@ using UnityEngine;
 
 public class DayCycle : MonoBehaviour
 {
-    public bool isDay = true;
     public float dayTime;
-    public float dayTimeMax;
     public int dayCount;
 
     public bool isNight = false;
     public float nightTime;
-    public float nightTimeMax;
-    public int nightCount;
-
-    public int teste;
 
     public sleep sleepCountHere;
 
     public nightLayer nightLayerHere;
+
+    public float becomeNightTime = 10;
+    public float endNighTime = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -36,49 +33,26 @@ public class DayCycle : MonoBehaviour
 
     void sleepCountFunc()
     {
-        
 
-        if (isNight ==true && isDay == false)
+        dayTime += Time.deltaTime;
+
+        if (isNight ==true )
         {
-           
-                nightTime+= Time.deltaTime;
-         
-            if (nightTime > nightTimeMax)
+            if (dayTime > endNighTime)
             {
-                isNight = false;
+                isNight = false; 
+                dayCount++;
                 dayTime = 0;
             }
-            /* nightCount++;     
-             dayTime = 0;
-             isNight = true;
-             isDay = false;
-             nightTime += Time.deltaTime;
-             nightLayer.enabled = true;
-             */
-
 
         }
-        else if(isNight == false && isDay == true)
+        else if(isNight== false)
         {
-           
-                dayTime += Time.deltaTime;
-          
-            if (dayTime > dayTimeMax)
+  
+            if (dayTime > becomeNightTime)
             {
-                nightTime = 0;
-                isNight = true;
+                isNight= true;        
             }
-
-           /*
-            dayCount++;
-            isNight = false;
-            isDay = true;
-          
-            nightTime = 0;
-           
-         
-            nightLayer.enabled = false;
-           */
         }
        
 

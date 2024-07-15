@@ -30,16 +30,12 @@ public class sleep : MonoBehaviour
 
 
 
-                if (isNightHere.isDay == false)
+                if (isNightHere.isNight == true)
                 {
-                    isNightHere.isDay = true;
+                    isNightHere.isNight = false;
+                    isNightHere.dayTime = 0;
                 }
-                else if (isNightHere.isDay == true)
-                {
-                    isNightHere.isDay = false;
-
-
-                }
+               
             }
 
         }

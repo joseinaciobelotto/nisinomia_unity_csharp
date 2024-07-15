@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class productionMachine : MonoBehaviour
+public class productionFactory2 : MonoBehaviour
 {
 
-    public List<Items> itemsList;
+
+
+    public float workersSalaryCoins;
+
+    public List<Merchandises> merchandisesList;
 
     public DayCycle isNightHere;
 
-    public float shopMoney;
+
 
 
 
     [System.Serializable]
-    public class Items
+    public class Merchandises
     {
 
         public string name;
@@ -46,25 +50,16 @@ public class productionMachine : MonoBehaviour
     void gettingItensSource()
     {
 
-        if (isNightHere.isNight == true)
-        {
-
-            foreach (Items itemOfList in itemsList)
-            {
-                itemOfList.price = 2;
-
-            }
-        }
 
     }
 
-    public float buyingFromShop(int itemId)
+    public float buyingFromFactory(int merchandiseId)
     {
-        if (itemsList[itemId].quantityLeft > 0)
+        if (merchandisesList[merchandiseId].quantityLeft > 0)
         {
-            itemsList[itemId].quantityLeft--;
-            shopMoney += itemsList[itemId].price;
-            return itemsList[itemId].price;
+            merchandisesList[merchandiseId].quantityLeft--;
+            workersSalaryCoins += merchandisesList[merchandiseId].price;
+            return merchandisesList[merchandiseId].price;
         }
         else
         {

@@ -115,12 +115,7 @@ public class materiaDrop : MonoBehaviour
             inColiClientCoinRange = true;
         }
 
-        if (collision.gameObject.tag == "Player")
-        {
-            coinsHere.materiaShowing++;
-            Destroy(gameObject);
-        }
-
+        
 
     }
 

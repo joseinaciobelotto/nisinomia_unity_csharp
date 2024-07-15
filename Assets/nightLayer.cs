@@ -6,29 +6,41 @@ public class nightLayer : MonoBehaviour
 {
     public Rigidbody2D rig;
 
-    Vector3 a;
-    Vector3 b;
-    public bool isDay = false;
+    public Vector3 a;
+    public Vector3 b;
+   
+   
+
+    public float maxDistanceNight;
+    public float maxDistanceDay;
+
+    public DayCycle isDayHere;
+
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
+        isDayHere = FindAnyObjectByType<DayCycle>();
         rig = GetComponent<Rigidbody2D>();
-        Vector3 a = new Vector3(0, 1000, 0);
-        Vector3 b = new Vector3(0, 0, 0);
+        Vector3 a = new Vector3(0, 10, 0);
+       
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (isDay == false)
+        if (isDayHere.isNight == true && rig.transform.position.y > maxDistanceDay)
         {
-            
-            rig.transform.position += a;
-        }else if (isDay == true)
-        {
-
-
-            rig.transform.position -= a;
+            speed = -1;
         }
+        else if(isDayHere.isNight == false && rig.transform.position.y < maxDistanceNight)
+        {
+            speed = 1;
+        }
+        else
+        {
+            speed = 0;
+        }
+        rig.transform.position += a * speed * Time.deltaTime;
     }
 }

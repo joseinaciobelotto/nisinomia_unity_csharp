@@ -10,7 +10,7 @@ public class BuyingActions : MonoBehaviour
     public bool inShopColi;
     public DayCycle dayCycle;
     public bool boughtToday;
-    public shopItemPrices itenBought;
+    public shopItemPrices3 itenBought;
 
 
     // Start is called before the first frame update
@@ -18,7 +18,7 @@ public class BuyingActions : MonoBehaviour
     {
         clientColi = GetComponent<Colision>();
         dayCycle = FindAnyObjectByType<DayCycle>();
-        itenBought = FindAnyObjectByType<shopItemPrices>();
+        itenBought = FindAnyObjectByType<shopItemPrices3>();
 
 
 

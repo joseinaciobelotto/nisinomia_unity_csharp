@@ -10,7 +10,7 @@ public class coinRange : MonoBehaviour
 
     void Start()
     {
-
+      
     }
 
     // Update is called once per frame
@@ -20,4 +20,5 @@ public class coinRange : MonoBehaviour
     }
 
   
+
 }

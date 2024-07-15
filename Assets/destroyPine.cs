@@ -22,7 +22,7 @@ public class destroyPine : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "client1")
+        if (collision.gameObject.tag == "monster")
         {
 
 

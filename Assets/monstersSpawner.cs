@@ -50,7 +50,7 @@ public class monsterSpawner : MonoBehaviour
     {
 
         time = maxTime;
-
+        isNight = FindAnyObjectByType<DayCycle>();
 
 
     }
@@ -66,7 +66,7 @@ public class monsterSpawner : MonoBehaviour
         if (isNight == true)
         {
             randomNumber = Random.Range(0, monstersAmout);
-            clientSpawner2((int)randomNumber);
+            clientSpawner2((int)randomNumber); 
         }
        
     }

@@ -5,10 +5,10 @@ using UnityEngine;
 
 
 
-public class shopItemPrices : MonoBehaviour
+public class shopItemPrices3 : MonoBehaviour
 {
    
-    public List<Items> itemsList;
+    public List<Products> itemsList;
 
     public DayCycle isNightHere;
 
@@ -17,7 +17,7 @@ public class shopItemPrices : MonoBehaviour
 
 
     [System.Serializable]
-    public class Items
+    public class Products
     {
 
         public string name;
@@ -52,7 +52,7 @@ public class shopItemPrices : MonoBehaviour
         if (isNightHere.isNight == true)
         {
        
-             foreach(Items itemOfList in itemsList)
+             foreach(Products itemOfList in itemsList)
             {
                 itemOfList.price = 2;
 

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6572471578292339088}
   m_Layer: 0
   m_Name: coinResorceMonsterPrefab 1
-  m_TagString: materia1
+  m_TagString: coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,5 +182,4 @@ MonoBehaviour:
   modfY: 0
   inColiClientCoinRange: 0
   inColiClientCoinRangeInPlayer: 0
-  coinsHere: {fileID: 0}
   playerPosition: {fileID: 0}

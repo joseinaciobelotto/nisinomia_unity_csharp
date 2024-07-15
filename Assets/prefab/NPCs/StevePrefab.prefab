@@ -141,7 +141,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3701101910759609630
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221,3 +221,4 @@ MonoBehaviour:
   inShopColi: 0
   dayCycle: {fileID: 0}
   boughtToday: 0
+  itenBought: {fileID: 0}

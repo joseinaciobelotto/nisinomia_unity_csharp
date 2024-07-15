@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class coinsShow : MonoBehaviour
     public DayCycle daytime;
     public int dayTimeFormatMin;
     public int dayTimeFormatSec;
+
+    string zeroMin;
+    string zeroSec;
 
 
     // Start is called before the first frame update
@@ -39,18 +43,23 @@ public class coinsShow : MonoBehaviour
         }
     }
 
+    void formatingMinutosSeconds()
+    {
+        dayTimeFormatMin = (int)(daytime.dayTime / 60);
+        dayTimeFormatSec = (int)(daytime.dayTime % 60);
+        zeroMin = zeroParameter(dayTimeFormatMin);
+        zeroSec = zeroParameter(dayTimeFormatSec);
+    }
+
     // Update is called once per frame
     void Update()
     {
 
-        dayTimeFormatMin = (int)(daytime.dayTime / 60) ;
-        dayTimeFormatSec = (int)(daytime.dayTime % 60);
-        string zeroMin;
-        string zeroSec;
-        zeroMin = zeroParameter(dayTimeFormatMin);
-        zeroSec = zeroParameter(dayTimeFormatSec);
+        formatingMinutosSeconds();
 
-        aaaa.text = "Moedas: " + coinsShowing.ToString()+ " " +  "Recursos: "+materiaShowing+" " + "Produtos: " + pineaplesAmout.bagLimit.ToString() + " " + "Setor: " + section.sectionPlayerIsNow.ToString()+"°" + " " + "Horas: " + zeroMin + dayTimeFormatMin.ToString() +":" + zeroSec + dayTimeFormatSec.ToString();
+        aaaa.text = "Moedas: " + coinsShowing.ToString()+ " " +  "Recursos: "+materiaShowing+" " + 
+            "Produtos: " + pineaplesAmout.bagLimit.ToString() + " " + "Setor: " + section.sectionPlayerIsNow.ToString()+"°" + " " 
+            + "Horas: " + zeroMin + dayTimeFormatMin.ToString() +":" + zeroSec + dayTimeFormatSec.ToString();
     }
 }
 

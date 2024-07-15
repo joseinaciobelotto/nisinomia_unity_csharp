@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4077290605090527309}
   - component: {fileID: 1744406605590900619}
   - component: {fileID: 1961377555297065952}
+  - component: {fileID: 6272487532850033713}
   m_Layer: 0
   m_Name: cenouraResorceMonsterPrefab
   m_TagString: materia1
@@ -184,3 +185,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.375, y: 0.625}
   m_EdgeRadius: 0
+--- !u!114 &6272487532850033713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7207829380734954393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54dd4297cc6895149a7ec97af523615b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materiaName: Cenoura

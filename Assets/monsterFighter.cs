@@ -6,7 +6,12 @@ public class monsterFighter : MonoBehaviour
 {
 
     public Rigidbody2D haste;
-    public float speed;
+
+    public int speedMax;
+    public int speedMin;
+    public float speedTotal;
+    public int speedMult;
+
     public Transform monsterPositionHere;
 
     public clientsFinishPoint finishPointRespective;
@@ -26,9 +31,13 @@ public class monsterFighter : MonoBehaviour
     public float modfY;
     public float modfX;
     public float time;
-    public float repeatTime;
+
+    public float repeatTimeMax;
+    public float repeatTimeMin;
 
     public float range;
+
+    public DayCycle isDayHere;
 
 
     Vector3 testeX()
@@ -61,14 +70,17 @@ public class monsterFighter : MonoBehaviour
             {
 
 
-                modfX = Random.Range(-1, 2);
-                modfY = Random.Range(-1, 2);
-                time = repeatTime;
+
+                modfX = 10 / Random.Range(-100f, 100f);
+
+                modfY = 10 / Random.Range(-100f, 100f);
+                time = Random.Range(repeatTimeMin, repeatTimeMax);
             }
             time -= Time.deltaTime;
         }
 
-        move1 = new Vector3(modfX * speed, modfY * speed, 0);
+        move1 = new Vector3(modfX, modfY, 0);
+        move1 = Vector3.Normalize(move1);
         return move1;
     }
 
@@ -78,7 +90,7 @@ public class monsterFighter : MonoBehaviour
     {
         haste = GetComponent<Rigidbody2D>();
 
-       
+        isDayHere = FindAnyObjectByType<DayCycle>();
 
         move1 = new Vector3(0, 0, 0);
 
@@ -90,25 +102,31 @@ public class monsterFighter : MonoBehaviour
 
     }
 
-
-
-
-
-
-
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        haste.transform.position += testeX() * Time.deltaTime;
-
-
-
-
+        if (isDayHere.isNight == true)
+        {
+            
+        }
+        speedTotal = Random.Range(speedMin, speedMax) * speedMult;
+        haste.transform.position += testeX() * speedTotal * Time.deltaTime;
 
 
     }
 
 
+    void sellResoursces()
+    {
+
+        
+
+
+    }
+
 
 }
+
+
+

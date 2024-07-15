@@ -16,6 +16,10 @@ TagManager:
   - monsterRange
   - coinRange
   - monster
+  - coin
+  - tomate
+  - cenoura
+  - monsterFighter
   layers:
   - Default
   - TransparentFX

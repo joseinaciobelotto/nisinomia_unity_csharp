@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3701101910759609630
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,13 +174,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   haste: {fileID: -4077290605090527309}
   speed: 4
-  mosnterPosition: {fileID: 0}
+  monsterPosition: {fileID: 0}
   finishPointRespective: {fileID: 0}
   playerPosition: {fileID: 0}
   move3: {x: 0, y: 0, z: 0}
   move2: {x: 0, y: 0, z: 0}
   move1: {x: 0, y: 0, z: 0}
-  inColiClient: 1
+  inColiClient: 0
   a: 0
   c2: 0
   b: 0
@@ -190,6 +190,8 @@ MonoBehaviour:
   time: 2
   repeatTime: 2
   range: 0
+  maxSpeed: 2
+  minSpeed: -1
 --- !u!114 &3665260945016749170
 MonoBehaviour:
   m_ObjectHideFlags: 0

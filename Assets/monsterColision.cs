@@ -30,6 +30,8 @@ public class monsterColision : MonoBehaviour
 
     public float range;
 
+    public float maxSpeed=2;
+    public float minSpeed=-1;
 
     Vector3 testeX()
     {
@@ -61,8 +63,8 @@ public class monsterColision : MonoBehaviour
             {
 
 
-                modfX = Random.Range(-1, 1);
-                modfY = Random.Range(-1, 1);
+                modfX = Random.Range(minSpeed, maxSpeed);
+                modfY = Random.Range(minSpeed, maxSpeed);
                 time = repeatTime;
             }
             time -= Time.deltaTime;

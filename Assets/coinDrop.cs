@@ -23,7 +23,7 @@ public class coinDrop : MonoBehaviour
 
     public bool inColiClientCoinRange;
     public bool inColiClientCoinRangeInPlayer;
-    public playerCoins coinsHere;
+   
     public Movement playerPosition;
 
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class coinDrop : MonoBehaviour
         randomSideX = Random.Range(-2, 2) + 1f;
         randomSideY = Random.Range(-2, 2) + 1f;
         leaveJump = new Vector3(randomSideX / 10, randomSideY / 10, 0);
-        coinsHere = FindAnyObjectByType<playerCoins>();
+      
         playerPosition = FindAnyObjectByType<Movement>();
 
 
@@ -117,12 +117,7 @@ public class coinDrop : MonoBehaviour
             inColiClientCoinRange = true;
         }
 
-        if (collision.gameObject.tag == "Player")
-        {
-            coinsHere.plaeyrCoinsAmount++;
-
-            Destroy(gameObject);
-        }
+      
 
 
     }
