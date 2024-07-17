@@ -69,6 +69,7 @@ public class monsterFighter : MonoBehaviour
             if (time <= 0)
             {
 
+                
 
 
                 modfX = 10 / Random.Range(-100f, 100f);

@@ -5,60 +5,101 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using static coinColector;
+using static resourceShipingBox1;
+using static shopItemPrices3;
 using static Unity.Burst.Intrinsics.X86;
+using static UnityEditor.Progress;
 
 public class showResource : MonoBehaviour
 {
 
     public TextMesh a;
-    public coinColector resource;
-    public string[] oldName = new string[100];
-    public int[] quantitys = new int[100];
-    public int nameAmout;
+    public coinColector coinColectorHere;
+
+
+
+
+    public List<resourcesToShow> resourcesToShowList;
+
+
+    [System.Serializable]
+    public class resourcesToShow
+    {
+
+        public string name;
+        public float price;
+        public int quantityLeft;
+
+        public resourcesToShow(string name, float price, int amout)
+        {
+            this.name = name;
+            this.price = price;
+            this.quantityLeft = amout;
+        }
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        resource = FindAnyObjectByType<coinColector>();
+        coinColectorHere = FindAnyObjectByType<coinColector>();
         a.text = "";
 
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-      
+      //  showItem();
     }
-    public void showItemInList(string name, int quantityLeft)
-    {
 
-        for (int aux = 0; aux <= nameAmout; aux++)
+
+    /*
+    void showItem()
+    {
+        for (int aux = 0; aux < coinColectorHere.resourceColectedList.Count; aux++)
         {
 
-            if (oldName[aux] == name)
+            foreach (resourcesToShow resource in resourcesToShowList)
             {
-                quantitys[aux] = quantityLeft;
-                a.text = "";
-                formatingText();
-                return;
+                if (coinColectorHere.resourceColectedList[aux].resourceName == resource.name)
+                {
+                    if (coinColectorHere.resourceColectedList[aux].quantityLeft > 0)
+                    {
+                        resource.quantityLeft = coinColectorHere.resourceColectedList[aux].quantityLeft;
+
+                        formatingText(resource);
+                    }
+
+                }
+                else
+                {
+                    resourcesToShow item = new resourcesToShow(coinColectorHere.resourceColectedList[aux].resourceName, coinColectorHere.resourceColectedList[aux].price, coinColectorHere.resourceColectedList[aux].quantityLeft);
+                    resourcesToShowList.Add(item);
+                    coinColectorHere.resourceColectedList.Remove(coinColectorHere.resourceColectedList[aux]);
+                    formatingText(item);
+                }
+              
             }
 
-        }
 
-        oldName[nameAmout] = name;
-        quantitys[nameAmout] = quantityLeft;
-        nameAmout++;
-        a.text = "";
-        formatingText();
+        }
     }
+    */
 
     public void formatingText()
     {
-        for (int aux = 0; aux < nameAmout; aux++)
+        a.text = "";
+        for (int aux = 0; aux < coinColectorHere.resourceColectedList.Count; aux++)
         {
 
-            a.text += oldName[aux] + " " + quantitys[aux] + "\n" ;
+            a.text += coinColectorHere.resourceColectedList[aux].resourceName + " " + coinColectorHere.resourceColectedList[aux].quantityLeft + "\n";
         }
 
     }
+
+
+
 }

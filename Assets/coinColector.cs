@@ -12,9 +12,13 @@ public class coinColector : MonoBehaviour
     public playerCoins coinsHere; 
     public materiaData materiaDataHere;
  
+
+
     public List<resourceColected> resourceColectedList;
 
     public showResource showResourceHere;
+
+
 
     [System.Serializable]
     public  class resourceColected
@@ -28,7 +32,7 @@ public class coinColector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coinsHere = FindAnyObjectByType<playerCoins>(); 
+        coinsHere = GetComponentInChildren<playerCoins>(); 
         showResourceHere = FindAnyObjectByType<showResource>();
 
     }
@@ -70,7 +74,7 @@ public class coinColector : MonoBehaviour
                 
 
                 resourceOfList.quantityLeft++;
-                showResourceHere.showItemInList(resourceOfList.resourceName, resourceOfList.quantityLeft);
+                showResourceHere.formatingText();
 
                 return;
             }
@@ -81,7 +85,9 @@ public class coinColector : MonoBehaviour
         item.resourceName = collision.gameObject.GetComponent<materiaData>().materiaName;
         item.quantityLeft++;
         resourceColectedList.Add(item);
-        showResourceHere.showItemInList(item.resourceName, item.quantityLeft);
+        showResourceHere.formatingText();
+
+
     }
 
 

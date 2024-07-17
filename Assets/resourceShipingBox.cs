@@ -9,10 +9,13 @@ public class resourceShipingBox1 : MonoBehaviour
 
     public float huntersSalaryCoins;
 
-    public coinColector coinColectorHere2;
-    public coinColector coinColectorHere;
+    public coinCollectorMonsterFighter coinColectorHere;
+    public showResourceShipBox showResourceShipBoxHere;
 
- 
+
+    public bool inColiClient;
+
+    public int auxNumResources;
 
     public List<resourceTypes> resorceList;
 
@@ -38,7 +41,7 @@ public class resourceShipingBox1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        showResourceShipBoxHere = FindAnyObjectByType<showResourceShipBox>();
     }
 
     // Update is called once per frame
@@ -47,33 +50,53 @@ public class resourceShipingBox1 : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-     if (collision.gameObject.tag == "monsterFighter")
-        {
-            coinColectorHere = collision.gameObject.GetComponent<coinColector>();
+  
 
-            tranferList();
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
+   
 
-    }
+    public void tranferList()
+    { 
+       
 
-    void tranferList()
-    {
         for (int aux = 0; aux < coinColectorHere.resourceColectedList.Count; aux++)
         {
-            if (coinColectorHere.resourceColectedList[aux].quantityLeft > 0 )
-            {
+          
 
+            foreach (resourceTypes resource in resorceList)
+            {
+                if (coinColectorHere.resourceColectedList[aux].resourceName == resource.name)
+                {
+                    if (coinColectorHere.resourceColectedList[aux].quantityLeft > 0)
+                    {
+                        resource.quantityLeft += coinColectorHere.resourceColectedList[aux].quantityLeft;
+                        coinColectorHere.resourceColectedList.Remove(coinColectorHere.resourceColectedList[aux]);
+                        return;
+                    }
+                    return;
+
+                }
+                else
+                {
+                    auxNumResources ++;
+                }
+            }
+
+            if (resorceList.Count == 0 || auxNumResources > resorceList.Count)
+            {
                 resourceTypes item = new resourceTypes(coinColectorHere.resourceColectedList[aux].resourceName, coinColectorHere.resourceColectedList[aux].price, coinColectorHere.resourceColectedList[aux].quantityLeft);
                 resorceList.Add(item);
                 coinColectorHere.resourceColectedList.Remove(coinColectorHere.resourceColectedList[aux]);
+                return;
+            }
+                    
+                    
+                
             }
 
-        }
+        showResourceShipBoxHere.formatingText();
+
     }
 
-}
+   }
+
+
