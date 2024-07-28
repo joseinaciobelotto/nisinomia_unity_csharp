@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static shopItemPrices3;
-using static UnityEditor.Progress;
+
 
 public class coinColector : MonoBehaviour
 {
@@ -23,9 +23,9 @@ public class coinColector : MonoBehaviour
     [System.Serializable]
     public  class resourceColected
     {
-        public string resourceName;
+        public string name;
         public float price;
-        public int quantityLeft;
+        public int amount;
 
     }
 
@@ -68,12 +68,12 @@ public class coinColector : MonoBehaviour
     {
         foreach (resourceColected resourceOfList in resourceColectedList)
         {
-            if (collision.gameObject.GetComponent<materiaData>().materiaName == resourceOfList.resourceName)
+            if (collision.gameObject.GetComponent<materiaData>().materiaName == resourceOfList.name)
             {
 
                 
 
-                resourceOfList.quantityLeft++;
+                resourceOfList.amount++;
                 showResourceHere.formatingText();
 
                 return;
@@ -82,8 +82,8 @@ public class coinColector : MonoBehaviour
 
         }
         resourceColected item = new resourceColected();
-        item.resourceName = collision.gameObject.GetComponent<materiaData>().materiaName;
-        item.quantityLeft++;
+        item.name = collision.gameObject.GetComponent<materiaData>().materiaName;
+        item.amount++;
         resourceColectedList.Add(item);
         showResourceHere.formatingText();
 

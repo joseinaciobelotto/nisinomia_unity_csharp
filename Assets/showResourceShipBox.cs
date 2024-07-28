@@ -7,8 +7,7 @@ using UnityEngine.UI;
 using static coinColector;
 using static resourceShipingBox1;
 using static shopItemPrices3;
-using static Unity.Burst.Intrinsics.X86;
-using static UnityEditor.Progress;
+
 
 public class showResourceShipBox : MonoBehaviour
 {
@@ -18,7 +17,8 @@ public class showResourceShipBox : MonoBehaviour
     public TextMesh a;
     public resourceShipingBox1 resourceShipingBox1Here;
 
-
+    public global_coins globalCoinsHere;
+   
 
 
     public List<resourcesToShow> resourcesToShowList;
@@ -45,8 +45,8 @@ public class showResourceShipBox : MonoBehaviour
     void Start()
     {
         resourceShipingBox1Here = FindAnyObjectByType<resourceShipingBox1>();
-        
 
+        globalCoinsHere = FindAnyObjectByType<global_coins>();
     }
 
     // Update is called once per frame
@@ -55,13 +55,13 @@ public class showResourceShipBox : MonoBehaviour
       
     }
 
-    public void formatingText()
+    public void FormatingText()
     {
         a.text = "";
-        for (int aux = 0; aux < resourceShipingBox1Here.resorceList.Count; aux++)
+        foreach (var item in globalCoinsHere.resourcesListSector1)
         {
 
-            a.text += resourceShipingBox1Here.resorceList[aux].name + " " + resourceShipingBox1Here.resorceList[aux].quantityLeft + "\n";
+            a.text += item.name + " " + item.amount + "\n";
         }
 
     }

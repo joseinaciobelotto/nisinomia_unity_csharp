@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static shopItemPrices3;
-using static UnityEditor.Progress;
 
 public class coinCollectorMonsterFighter : MonoBehaviour
 { 
@@ -12,7 +11,6 @@ public class coinCollectorMonsterFighter : MonoBehaviour
 
 
     public materiaData materiaDataHere;
- 
 
 
     public List<resourceColected> resourceColectedList;
@@ -24,9 +22,9 @@ public class coinCollectorMonsterFighter : MonoBehaviour
     [System.Serializable]
     public  class resourceColected
     {
-        public string resourceName;
+        public string name;
         public float price;
-        public int quantityLeft;
+        public int amount                                     ;
 
     }
 
@@ -69,22 +67,20 @@ public class coinCollectorMonsterFighter : MonoBehaviour
     {
         foreach (resourceColected resourceOfList in resourceColectedList)
         {
-            if (collision.gameObject.GetComponent<materiaData>().materiaName == resourceOfList.resourceName)
+            if (collision.gameObject.GetComponent<materiaData>().materiaName == resourceOfList.name)
             {
 
-                
-
-                resourceOfList.quantityLeft++;
+                resourceOfList.amount++;
                 showResourceHere.formatingText();
 
                 return;
             }
             
-
         }
+
         resourceColected item = new resourceColected();
-        item.resourceName = collision.gameObject.GetComponent<materiaData>().materiaName;
-        item.quantityLeft++;
+        item.name = collision.gameObject.GetComponent<materiaData>().materiaName;
+        item.amount++;
         resourceColectedList.Add(item);
         showResourceHere.formatingText();
 

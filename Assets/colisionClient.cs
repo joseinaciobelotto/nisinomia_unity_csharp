@@ -18,7 +18,15 @@ public class colisionWithClient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E) && colisionplayer == true)
+        {
+            shipingScreen.SetActive(false);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && colisionplayer == true)
+        {
+            shipingScreen.SetActive(true);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +36,7 @@ public class colisionWithClient : MonoBehaviour
 
             coinColectorHere = collision.gameObject.GetComponent<coinCollectorMonsterFighter>();
 
-           shipingBox1Here.tranferList();
+           shipingBox1Here.TranferListTranferList();
         }
         if (collision.gameObject.tag == "Player")
         {
@@ -39,10 +47,12 @@ public class colisionWithClient : MonoBehaviour
           
         }
     }
+   
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
+
             shipingScreen.SetActive(false);
             colisionplayer =false;
         }

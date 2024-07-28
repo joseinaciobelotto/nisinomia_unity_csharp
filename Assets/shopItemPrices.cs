@@ -8,28 +8,22 @@ using UnityEngine;
 public class shopItemPrices3 : MonoBehaviour
 {
    
-    public List<Products> itemsList;
+ 
 
     public DayCycle isNightHere;
 
     public float shopMoney;
 
+    public global_coins globalCoinsHere;
+   
 
-
-    [System.Serializable]
-    public class Products
-    {
-
-        public string name;
-        public float price;
-        public int quantityLeft;
-
-    }
+   
 
     // Start is called before the first frame update
     void Start()
     {
         isNightHere = FindAnyObjectByType<DayCycle>();
+        globalCoinsHere = FindAnyObjectByType<global_coins>();
     }
 
     // Update is called once per frame
@@ -39,20 +33,20 @@ public class shopItemPrices3 : MonoBehaviour
     }
 
 
-    void itensPriceInfaltion()
+    void ItensPriceInfaltion()
     {
         
 
         
     }
 
-    void gettingItensSource()
+    void GettingItensSource()
     {
         
         if (isNightHere.isNight == true)
         {
        
-             foreach(Products itemOfList in itemsList)
+             foreach(global_coins.ResourceTypes itemOfList in globalCoinsHere.productsListSector3)
             {
                 itemOfList.price = 2;
 
@@ -61,18 +55,21 @@ public class shopItemPrices3 : MonoBehaviour
 
     }
 
-   public float buyingFromShop(int itemId)
+   public float BuyingFromShop(int itemId)
     {
-        if (itemsList[itemId].quantityLeft > 0)
+        if (globalCoinsHere.productsListSector3.Count > 0 )
         {
-            itemsList[itemId].quantityLeft--;
-            shopMoney += itemsList[itemId].price;
-            return itemsList[itemId].price;
-        }
-        else
+            
+       
+        if (globalCoinsHere.productsListSector3[itemId].amount > 0)
         {
-            return -1;
+            globalCoinsHere.productsListSector3[itemId].amount--;
+            shopMoney += globalCoinsHere.productsListSector3[itemId].price;
+            return globalCoinsHere.productsListSector3[itemId].price;
         }
+        }
+        return -1;
+        
 
        
     }

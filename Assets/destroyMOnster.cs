@@ -17,22 +17,7 @@ public class destroyMonster : MonoBehaviour
     }
 
 
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "monster")
-        {
-           
-            Destroy(collision.gameObject);
-        }
-    }
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "monster")
-        {
-
-            Destroy(collision.gameObject);
-        }
-    }
+   
 
 
 

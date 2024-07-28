@@ -30,8 +30,29 @@ public class monsterColision : MonoBehaviour
 
     public float range;
 
-    public float maxSpeed=2;
-    public float minSpeed=-1;
+
+    public int speedMax;
+    public int speedMin;
+    public float speedTotal;
+    public int speedMult;
+
+    public float repeatTimeMax;
+    public float repeatTimeMin;
+
+    public float rangeOfTransformTest;
+    public float timeOfTransformTest;
+    public wallColision wallColisionHere;
+
+
+    public float lifeNow;
+    public float lifeMax;
+    public float damage;
+    public float armor;
+    public float lifeRegen;
+    public float atackSpeed;
+
+
+
 
     Vector3 testeX()
     {
@@ -40,37 +61,13 @@ public class monsterColision : MonoBehaviour
         {
 
 
-            if (playerPosition.transform.position.x < transform.position.x)
-            {
-                modfX = -1f;
-            }
-            else if (playerPosition.transform.position.x > transform.position.x)
-            {
-                modfX = 1f;
-            }
-            if (playerPosition.transform.position.y < transform.position.y)
-            {
-                modfY = -1f;
-            }
-            else if (playerPosition.transform.position.y > transform.position.y)
-            {
-                modfY = 1f;
-            }
+            TargetPosition(playerPosition.transform);
         }
-        else
-        {
-            if (time <= 0)
-            {
-
-
-                modfX = Random.Range(minSpeed, maxSpeed);
-                modfY = Random.Range(minSpeed, maxSpeed);
-                time = repeatTime;
-            }
-            time -= Time.deltaTime;
-        }
+    
+     
 
         move1 = new Vector3(modfX * speed, modfY * speed, 0);
+        move1 = Vector3.Normalize(move1);
         return move1;
     }
 
@@ -86,8 +83,8 @@ public class monsterColision : MonoBehaviour
 
         move2 = new Vector3(0, 0, 0);
 
-    
-
+        wallColisionHere = GetComponentInChildren<wallColision>();
+            
 
 
     }
@@ -107,7 +104,26 @@ public class monsterColision : MonoBehaviour
         }
     }
 
+    void TargetPosition(Transform targetTransform)
+    {
+        if (targetTransform.transform.position.x < transform.position.x)
+        {
+            modfX = -1f;
+        }
+        else if (targetTransform.transform.position.x > transform.position.x)
+        {
+            modfX = 1f;
+        }
+        if (targetTransform.transform.position.y < transform.position.y)
+        {
+            modfY = -1f;
+        }
+        else if (targetTransform.transform.position.y > transform.position.y)
+        {
+            modfY = 1f;
+        }
 
+    }
 
     private void Update()
     {
@@ -118,16 +134,46 @@ public class monsterColision : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        haste.transform.position += testeX() * Time.deltaTime;
+         
+        speedTotal = Random.Range(speedMin, speedMax) * speedMult;
+        haste.transform.position += testeX() * speedTotal * Time.deltaTime;
 
-
-
+        TestingTranform(haste);
 
 
 
     }
 
+    void TestingTranform(Rigidbody2D transformHere)
+    {
+        Vector3 fighterPosition = new Vector3(transformHere.transform.position.x, transformHere.transform.position.y, 0);
 
-   
+
+
+        if (time <= 0)
+        {
+
+            modfX = 10 / Random.Range(-100f, 100f);
+            modfY = 10 / Random.Range(-100f, 100f);
+            time = Random.Range(repeatTimeMin, repeatTimeMax);
+
+
+        }
+
+        if (haste.transform.position.x < fighterPosition.x + rangeOfTransformTest && haste.transform.position.x > fighterPosition.x - rangeOfTransformTest &&
+          haste.transform.position.y < fighterPosition.y + rangeOfTransformTest && haste.transform.position.x > fighterPosition.y - rangeOfTransformTest && wallColisionHere.time > timeOfTransformTest)
+        {
+
+
+            modfX *= -Random.Range(-1f, 2f);
+            modfY *= -Random.Range(-1f, 2f);
+            wallColisionHere.time = 0;
+
+            Debug.Log("fasdsad");
+        }
+
+        time -= Time.deltaTime;
+    }
+
+
 }

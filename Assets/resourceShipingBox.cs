@@ -11,30 +11,14 @@ public class resourceShipingBox1 : MonoBehaviour
 
     public coinCollectorMonsterFighter coinColectorHere;
     public showResourceShipBox showResourceShipBoxHere;
+    public global_coins globalCoinsHere;
 
 
     public bool inColiClient;
 
     public int auxNumResources;
 
-    public List<resourceTypes> resorceList;
 
-    [System.Serializable]
-    public class resourceTypes
-    {
-        public string name;
-        public float price;
-        public float quantityLeft;
-
-        public resourceTypes(string name, float price, int amout)
-        {
-            this.name = name;
-            this.price = price;
-            this.quantityLeft = amout;
-        }
-
-
-    }
 
 
 
@@ -42,6 +26,7 @@ public class resourceShipingBox1 : MonoBehaviour
     void Start()
     {
         showResourceShipBoxHere = FindAnyObjectByType<showResourceShipBox>();
+        globalCoinsHere = FindAnyObjectByType<global_coins>();
     }
 
     // Update is called once per frame
@@ -54,22 +39,22 @@ public class resourceShipingBox1 : MonoBehaviour
 
    
 
-    public void tranferList()
-    { 
-       
+    public void TranferListTranferList()
+    {
+        auxNumResources = 0;
 
-        for (int aux = 0; aux < coinColectorHere.resourceColectedList.Count; aux++)
-        {
+        foreach (var collectedResource in  coinColectorHere.resourceColectedList)
+        { 
           
 
-            foreach (resourceTypes resource in resorceList)
+            foreach (var resource in globalCoinsHere.resourcesListSector1)
             {
-                if (coinColectorHere.resourceColectedList[aux].resourceName == resource.name)
+                if (collectedResource.name == resource.name)
                 {
-                    if (coinColectorHere.resourceColectedList[aux].quantityLeft > 0)
+                    if (collectedResource.amount > 0)
                     {
-                        resource.quantityLeft += coinColectorHere.resourceColectedList[aux].quantityLeft;
-                        coinColectorHere.resourceColectedList.Remove(coinColectorHere.resourceColectedList[aux]);
+                        resource.amount += collectedResource.amount;
+                        coinColectorHere.resourceColectedList.Remove(collectedResource);
                         return;
                     }
                     return;
@@ -78,22 +63,31 @@ public class resourceShipingBox1 : MonoBehaviour
                 else
                 {
                     auxNumResources ++;
+                 
                 }
             }
 
-            if (resorceList.Count == 0 || auxNumResources > resorceList.Count)
+
+            if (globalCoinsHere.resourcesListSector1.Count == 0)
             {
-                resourceTypes item = new resourceTypes(coinColectorHere.resourceColectedList[aux].resourceName, coinColectorHere.resourceColectedList[aux].price, coinColectorHere.resourceColectedList[aux].quantityLeft);
-                resorceList.Add(item);
-                coinColectorHere.resourceColectedList.Remove(coinColectorHere.resourceColectedList[aux]);
-                return;
+                auxNumResources++;
+            }
+           
+            if (auxNumResources >= globalCoinsHere.resourcesListSector1.Count)
+            {
+
+         
+                global_coins.ResourceTypes item = new global_coins.ResourceTypes(collectedResource.name, collectedResource.price, collectedResource.amount);
+                globalCoinsHere.resourcesListSector1.Add(item);
+                coinColectorHere.resourceColectedList.Remove(collectedResource);
+           
             }
                     
                     
                 
             }
 
-        showResourceShipBoxHere.formatingText();
+        showResourceShipBoxHere.FormatingText();
 
     }
 

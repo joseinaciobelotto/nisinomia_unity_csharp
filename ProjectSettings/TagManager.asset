@@ -20,6 +20,7 @@ TagManager:
   - tomate
   - cenoura
   - monsterFighter
+  - wall
   layers:
   - Default
   - TransparentFX

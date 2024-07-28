@@ -28,10 +28,10 @@ public class DayCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sleepCountFunc();
+        SleepCountFunc();
     }
 
-    void sleepCountFunc()
+    void SleepCountFunc()
     {
 
         dayTime += Time.deltaTime;

@@ -7,8 +7,8 @@ using UnityEngine.UI;
 using static coinColector;
 using static resourceShipingBox1;
 using static shopItemPrices3;
-using static Unity.Burst.Intrinsics.X86;
-using static UnityEditor.Progress;
+
+
 
 public class showResourceMonsterFighter : MonoBehaviour
 {
@@ -97,7 +97,7 @@ public class showResourceMonsterFighter : MonoBehaviour
         for (int aux = 0; aux < coinColectorHere.resourceColectedList.Count; aux++)
         {
 
-            a.text += coinColectorHere.resourceColectedList[aux].resourceName + " " + coinColectorHere.resourceColectedList[aux].quantityLeft + "\n";
+            a.text += coinColectorHere.resourceColectedList[aux].name + " " + coinColectorHere.resourceColectedList[aux].amount + "\n";
         }
 
     }

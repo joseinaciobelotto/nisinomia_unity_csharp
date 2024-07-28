@@ -9,28 +9,19 @@ public class productionFactory2 : MonoBehaviour
 
     public float workersSalaryCoins;
 
-    public List<Merchandises> merchandisesList;
+    public global_coins globalCoinsHere;
 
     public DayCycle isNightHere;
 
 
 
-
-
-    [System.Serializable]
-    public class Merchandises
-    {
-
-        public string name;
-        public float price;
-        public int quantityLeft;
-
-    }
+  
 
     // Start is called before the first frame update
     void Start()
     {
         isNightHere = FindAnyObjectByType<DayCycle>();
+        globalCoinsHere = FindAnyObjectByType<global_coins>();
     }
 
     // Update is called once per frame
@@ -40,26 +31,26 @@ public class productionFactory2 : MonoBehaviour
     }
 
 
-    void itensPriceInfaltion()
+    void ItensPriceInfaltion()
     {
 
 
 
     }
 
-    void gettingItensSource()
+    void GettingItensSource()
     {
 
 
     }
 
-    public float buyingFromFactory(int merchandiseId)
+    public float BuyingFromFactory(int merchandiseId)
     {
-        if (merchandisesList[merchandiseId].quantityLeft > 0)
+        if (globalCoinsHere.merchandisesListSector2[merchandiseId].amount > 0)
         {
-            merchandisesList[merchandiseId].quantityLeft--;
-            workersSalaryCoins += merchandisesList[merchandiseId].price;
-            return merchandisesList[merchandiseId].price;
+            globalCoinsHere.merchandisesListSector2[merchandiseId].amount--;
+            workersSalaryCoins += globalCoinsHere.merchandisesListSector2[merchandiseId].price;
+            return globalCoinsHere.merchandisesListSector2[merchandiseId].price;
         }
         else
         {

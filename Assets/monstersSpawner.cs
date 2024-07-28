@@ -80,7 +80,7 @@ public class monsterSpawner : MonoBehaviour
 
             if (monsterPrefabs[prefabIndex].monstersSpawned < monsterPrefabs[prefabIndex].clientsMaxNum)
             {
-                Vector3 spawnArea = new Vector3(leavingPoint.transform.position.x + Random.Range(rangeMin, rangeMax), leavingPoint.transform.position.y + Random.Range(rangeMin, rangeMax), 0);
+                Vector3 spawnArea = new Vector3(leavingPoint.transform.position.x + Random.Range(rangeMin, rangeMax), leavingPoint.transform.position.y + Random.Range(rangeMin, rangeMax), leavingPoint.transform.position.z);
                 Instantiate(monsterPrefabs[prefabIndex].prefab, spawnArea, Quaternion.identity);
                 monsterPrefabs[prefabIndex].monstersSpawned++;
             }

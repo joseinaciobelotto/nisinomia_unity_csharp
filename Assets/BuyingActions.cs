@@ -12,14 +12,16 @@ public class BuyingActions : MonoBehaviour
     public bool boughtToday;
     public shopItemPrices3 itenBought;
 
+    public global_coins globalCoinsHere;
 
+  
     // Start is called before the first frame update
     void Start()
     {
         clientColi = GetComponent<Colision>();
         dayCycle = FindAnyObjectByType<DayCycle>();
         itenBought = FindAnyObjectByType<shopItemPrices3>();
-
+        globalCoinsHere = FindAnyObjectByType<global_coins>();
 
 
     }
@@ -27,19 +29,19 @@ public class BuyingActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        perDayActions();
+        PerDayActions();
     }
 
-    void dayBuying()
+    void DayBuying()
     {
         if (inShopColi == true && clientMoneyBag >= 20)
         {
             int i;
-            i = Random.Range(0, itenBought.itemsList.Count );
+            i = Random.Range(0, 1 );
 
-            if (itenBought.buyingFromShop(i) > 0)
+            if (itenBought.BuyingFromShop(i) > 0)
             {
-                clientMoneyBag -= itenBought.buyingFromShop(i);
+                clientMoneyBag -= itenBought.BuyingFromShop(i);
 
                 boughtToday = true;
             }
@@ -52,13 +54,13 @@ public class BuyingActions : MonoBehaviour
         }
         
     }
-    void perDayActions()
+    void PerDayActions()
     {
         if (dayCycle.isNight == false)
         {
             if (boughtToday == false)
             {
-                dayBuying();
+                DayBuying();
             }
        
         }
