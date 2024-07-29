@@ -66,21 +66,24 @@ public class monsterFighter : MonoBehaviour
     public GameObject aimObject;
     public GameObject waponObject;
 
-
     public bool positionAtibuited = false;
 
+    public float timeCountAtack = 0;
+    public float multiplyingZ = 1;
     Vector3 testeX()
     {
-
-        if (inColiClient == true)
+        if (isDayHere.isNight != true)
         {
-            if (monsterPositionHere != null)
+            if (inColiClient == true)
             {
-                TargetPosition(monsterPositionHere);
-                AtackMode();
+                if (monsterPositionHere != null)
+                {
+                    TargetPosition(monsterPositionHere);
+                    AtackMode();
+                }
             }
         }
-        else if (isDayHere.isNight == true)
+        else
         {
             TargetPosition(shipingBoxPosition.transform);
         }
@@ -203,8 +206,8 @@ public class monsterFighter : MonoBehaviour
             ColliderEnabled();
 
             atackDirection = new Vector3(monsterPositionHere.transform.position.x, monsterPositionHere.transform.position.y, 0);
+            float tanValue = 0;
 
-         
             Vector3 relativePosition = transform.InverseTransformPoint(aimObject.transform.position);
 
             Vector3 lastPosition = new Vector3(0f, 0f, 0f);
@@ -266,19 +269,19 @@ public class monsterFighter : MonoBehaviour
                     else if (relativePosition.x < relativePosition.y)
                     {
                         tan = relativePosition.x / relativePosition.y;
-                        tan = Mathf.Pow(tan, -1) * (180f / 3.14159265359f);
+                        tan =   (180f / 3.14159265359f);
 
                     }
                     else if (relativePosition.x > relativePosition.y)
                     {
                         tan = relativePosition.y / relativePosition.x;
-                        tan = Mathf.Pow(tan, -1) * (180f / 3.14159265359f);
+                        tan = (180f / 3.14159265359f);
 
                     }
                     else
                     {
                         tan = 1;
-                        tan = Mathf.Pow(tan, -1) * (180f / 3.14159265359f);
+                        tan =  (180f / 3.14159265359f);
                     }
                    
                  
@@ -290,26 +293,32 @@ public class monsterFighter : MonoBehaviour
                    v.x = 0;
                    v.y =0;
                    q = Quaternion.Euler(v);*/
-
+                   
+                  
                     if (positionAtibuited == false)
                     {
-                        atackHitColliderHere.transform.rotation = Quaternion.Euler(0f, 0f, tan -20);
+                        tanValue = tan;
+                        atackHitColliderHere.transform.rotation = Quaternion.Euler(0f, 0f, tanValue - 20);
                         positionAtibuited = true;
+                       
 
                     }
-                    else if (atackHitColliderHere.transform.rotation.z <     tan + 40)
+                    else if (timeCountAtack < 5f)
                     {
-
-                        float multiplyingZ = Time.deltaTime * 5 * atackSpeed;
-                        atackHitColliderHere.transform.rotation = Quaternion.Euler(0f, 0f, multiplyingZ);
+                        timeCountAtack +=0.1f;
+                        Debug.Log(Time.deltaTime);
+                        atackHitColliderHere.transform.rotation = Quaternion.Euler(0f, 0f, multiplyingZ = multiplyingZ * atackSpeed);
 
                         Debug.Log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     }
                     else
                     {
+
+                        multiplyingZ = 1;
+                        timeCountAtack = 0;
                         positionAtibuited = false;
-                  Debug.Log("222222222222222222222222222222222222222222222222222222222222222222222");
-                        HitColliderDisabled();
+                        tanValue = 0;
+                  
                     }
 
 
@@ -317,8 +326,10 @@ public class monsterFighter : MonoBehaviour
                 }
                 else
                 {
+                    multiplyingZ = 1;
+                    timeCountAtack = 0;
                     positionAtibuited = false;
-              
+                    tanValue = 0;
                     HitColliderDisabled();
                 }
 

@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class detectMonster : MonoBehaviour
 {
 
     public monsterFighter inColiMonster;
-       public monsterColision monsterPositionHere;        
+       public monsterColision monsterPositionHere;
+
+    public List<GameObject> colidingObject  = new List<GameObject>();
+
+    public float shortestDistance;
+
+    public int[] objIndex = new int[100];
 
     // Start is called before the first frame update
     void Start()
@@ -26,18 +34,67 @@ public class detectMonster : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag=="monster")
+        if (collision.gameObject.tag == "monster")
         {
+            colidingObject.Add(collision.gameObject);
             inColiMonster.inColiClient = true;
-           inColiMonster.monsterPositionHere =  collision.gameObject.GetComponent<monsterColision>().transform;
+           
+
         }
-    }   
+
+
+        
+        
+    }
+
+
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        int aux = 0;
+        int aux2 = 0;
+        foreach (GameObject obj in colidingObject)
+        {
+
+            float hipObj = (Mathf.Sqrt((Mathf.Pow((obj.transform.position.x), 2) + Mathf.Pow((obj.transform.position.y), 2))));
+
+            if (hipObj < shortestDistance)
+            {
+                shortestDistance = hipObj;
+
+
+                aux++;
+                inColiMonster.monsterPositionHere = obj.GetComponent<monsterColision>().transform;
+            }
+
+            
+           
+
+        }
+        if (aux == 0)
+        {
+            shortestDistance = 1000;
+        }
+    }
+
      void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag=="monster")
         {
-            inColiMonster.inColiClient = false;
-            inColiMonster.monsterPositionHere = null;
+
+
+
+            colidingObject.Remove(collision.gameObject);
+
+            if (colidingObject.Count <= 0)
+            {
+                inColiMonster.inColiClient = false;
+                inColiMonster.monsterPositionHere = null;
+
+            }
+
+
+
         }
     }
 }

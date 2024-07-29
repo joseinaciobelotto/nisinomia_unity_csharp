@@ -293,7 +293,7 @@ MonoBehaviour:
   rangeOfTransformTest: 3
   timeOfTransformTest: 2
   wallColisionHere: {fileID: 8976482226881250731}
-  lifeNow: 0
+  lifeNow: 40
   lifeMax: 0
   damage: 0
   armor: 0
