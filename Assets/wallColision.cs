@@ -9,6 +9,10 @@ public class wallColision : MonoBehaviour
     public float time = 0;
     public float repeatTime = 2;
 
+    public string collision1;
+    public string collision2;
+    public string collision3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,19 +36,24 @@ public class wallColision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "wall")
+        if (collision.gameObject.tag != collision1 && collision.gameObject.tag != collision3 && collision.gameObject.tag != collision2)
         {
             onCollisionWalls = true;
         }
-           
+        else
+        {
+            onCollisionWalls = false;
+        }
+
     }
  
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "wall")
+        if (collision.gameObject.tag != collision1 && collision.gameObject.tag != collision3 && collision.gameObject.tag != collision2)
         {
-            onCollisionWalls = false; 
+            onCollisionWalls = false;
         }
+
     }
 }

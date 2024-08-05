@@ -48,7 +48,7 @@ public class laucher : MonoBehaviour
         if (bagLimit > 0)
         {
 
-            if (Input.GetKeyDown(KeyCode.Mouse1)|| joystick.joystickHere2.Horizontal < 0)
+            if (Input.GetKeyDown(KeyCode.Mouse1) || joystick.joystickHere2.Horizontal < 0)
             {
                 GameObject abacaxi = Instantiate(pineapplePrefab, leavingPoint.position, Quaternion.identity);
                 bagLimit--;

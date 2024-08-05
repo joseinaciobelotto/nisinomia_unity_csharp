@@ -93,6 +93,9 @@ MonoBehaviour:
   onCollisionWalls: 0
   time: 0
   repeatTime: 2
+  collision1: 
+  collision2: 
+  collision3: 
 --- !u!1 &7207829380734954393
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 7207829380734954393}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.47, y: -21, z: -11}
+  m_LocalPosition: {x: -42.47, y: -21, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -170,7 +173,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: c9f36b49136a33f4da2b04cbc9648f93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -315,5 +318,5 @@ MonoBehaviour:
   colid: {fileID: 3701101910759609630}
   monsterPosition: {fileID: 5490222270359022014}
   monsterMax: {fileID: 0}
-  prefabIndex: 0
+  prefabIndex: 5
   isQuiting: 0

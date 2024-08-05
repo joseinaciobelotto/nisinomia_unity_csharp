@@ -93,6 +93,9 @@ MonoBehaviour:
   onCollisionWalls: 0
   time: 0
   repeatTime: 2
+  collision1: 
+  collision2: 
+  collision3: 
 --- !u!1 &7207829380734954393
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 7207829380734954393}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -42.47, y: -21, z: -11}
+  m_LocalPosition: {x: -42.47, y: -21, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -21,6 +21,7 @@ TagManager:
   - cenoura
   - monsterFighter
   - wall
+  - shipingBox
   layers:
   - Default
   - TransparentFX
