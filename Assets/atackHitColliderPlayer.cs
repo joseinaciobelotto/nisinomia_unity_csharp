@@ -10,6 +10,8 @@ public class atackHitColliderPlayer : MonoBehaviour
     public monsterFighter monsterFighterHere;
     public monsterColision monsterColisionHere;
 
+    public Movement movementHere;
+
     public float strenght = 0.01f;
     public Vector3 direction;
     // Start is called before the first frame update
@@ -18,6 +20,8 @@ public class atackHitColliderPlayer : MonoBehaviour
         colliderHitAtack = GetComponent<BoxCollider2D>();
         spritHitBox = GetComponentInChildren<SpriteRenderer>();
         monsterFighterHere = FindAnyObjectByType<monsterFighter>();
+        movementHere = FindAnyObjectByType<Movement>();
+
     }
 
     // Update is called once per frame
@@ -40,8 +44,11 @@ public class atackHitColliderPlayer : MonoBehaviour
             }
             else
             {
-                direction = new Vector3(monsterColisionHere.transform.position.x, monsterColisionHere.transform.position.y, monsterColisionHere.transform.position.z);
-                monsterColisionHere.haste.AddForce(transform.InverseTransformPoint(direction) * strenght, ForceMode2D.Impulse);
+                if (movementHere.timeCountAtack > 0)
+                {
+                    direction = new Vector3(monsterColisionHere.transform.position.x, monsterColisionHere.transform.position.y, 0);
+                    monsterColisionHere.haste.AddForce(transform.InverseTransformPoint(direction) * strenght, ForceMode2D.Impulse);
+                }
             }
         }
     }

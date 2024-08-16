@@ -106,19 +106,19 @@ public class monsterColision : MonoBehaviour
 
     void TargetPosition(Transform targetTransform)
     {
-        if (targetTransform.transform.position.x < transform.position.x)
+        if (targetTransform.transform.position.x  < transform.position.x )
         {
             modfX = -1f;
         }
-        else if (targetTransform.transform.position.x > transform.position.x)
+        else if (targetTransform.transform.position.x  > transform.position.x )
         {
             modfX = 1f;
         }
-        if (targetTransform.transform.position.y < transform.position.y)
+        if (targetTransform.transform.position.y  < transform.position.y )
         {
             modfY = -1f;
         }
-        else if (targetTransform.transform.position.y > transform.position.y)
+        else if (targetTransform.transform.position.y > transform.position.y )
         {
             modfY = 1f;
         }
@@ -169,7 +169,7 @@ public class monsterColision : MonoBehaviour
             modfY *= -Random.Range(-1f, 2f);
             wallColisionHere.time = 0;
 
-            Debug.Log("fasdsad");
+          
         }
 
         time -= Time.deltaTime;

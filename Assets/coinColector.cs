@@ -11,8 +11,9 @@ public class coinColector : MonoBehaviour
 
     public playerCoins coinsHere; 
     public materiaData materiaDataHere;
- 
 
+
+   
 
     public List<resourceColected> resourceColectedList;
 

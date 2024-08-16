@@ -63,6 +63,13 @@ public class global_coins : MonoBehaviour
     public List<ResourceTypes> productsListSector3;
     public List<ResourceTypes> supList;
 
+
+    public float resourcesListSector1CashMachine;
+    public float merchandisesListSector2CashMachine;
+    public float productsListSector3CashMachine;
+    public float supListCashMachine;
+
+
     [System.Serializable]
     public class ResourceTypes
     {
@@ -111,9 +118,11 @@ public class global_coins : MonoBehaviour
 
             //Trasnfering Between Sectors
 
-            TrasnferingBetweenSectors(productsListSector3, supList);
-            TrasnferingBetweenSectors(merchandisesListSector2, productsListSector3);
-            TrasnferingBetweenSectors(resourcesListSector1, merchandisesListSector2);
+
+
+            TrasnferingBetweenSectors(productsListSector3, supList, productsListSector3CashMachine, supListCashMachine);
+            TrasnferingBetweenSectors(merchandisesListSector2, productsListSector3, merchandisesListSector2CashMachine, productsListSector3CashMachine);
+            TrasnferingBetweenSectors(resourcesListSector1, merchandisesListSector2, resourcesListSector1CashMachine, merchandisesListSector2CashMachine);
          
           
        
@@ -196,16 +205,16 @@ public class global_coins : MonoBehaviour
 
 
     */
-        
-         
 
-    void TrasnferingBetweenSectors(List<ResourceTypes> firstList, List<ResourceTypes> secondList)
+
+
+    void TrasnferingBetweenSectors(List<ResourceTypes> firstList, List<ResourceTypes> secondList, float cashMachineFirst, float cashMachineSecond)
     {
 
         auxNumResources = 0;
-       
-        
-        Debug.Log("quaaaaaaaaantas"+firstList.Count);
+
+
+        Debug.Log("quaaaaaaaaantas" + firstList.Count);
 
         bool removed = false;
 
@@ -215,57 +224,70 @@ public class global_coins : MonoBehaviour
 
         foreach (var productInFirstList in firstList)
         {
-           
 
 
             foreach (var productInSecondList in secondList)
             {
+
                 if (productInFirstList.name == productInSecondList.name)
                 {
-                    if (productInFirstList.amount > 0)
+                    if (productInFirstList.amount > 0 && cashMachineSecond - (productInFirstList.price * productInFirstList.amount) >= 0)
                     {
+
+                        Debug.Log("aaaaa");
+                        cashMachineFirst += productInFirstList.price * productInFirstList.amount;
+                        cashMachineSecond -= productInFirstList.price * productInFirstList.amount;
+
                         productInSecondList.amount += productInFirstList.amount;
+
                     }
                     itemsToRemove.Add(productInFirstList);
-                        removed = true;
-                       
-                     
+                    removed = true;
+
+
 
                 }
                 else
                 {
                     auxNumResources++;
                 }
-            }
-        
-            if (removed == true)
-            {
-                continue;
-            }
 
-            if ( secondList.Count == 0)
+
+                if (removed == true)
+                {
+                    continue;
+                }
+
+                
+
+
+            }
+            if (secondList.Count == 0)
             {
                 auxNumResources++;
             }
-           
+
             if (auxNumResources >= secondList.Count)
             {
-               
-            
+
+                Debug.Log("bbbbb");
 
                 itemsToAdd.Add(productInFirstList);
                 itemsToRemove.Add(productInFirstList);
-               
+
             }
-
-
-
 
         }
 
         foreach (var item in itemsToRemove)
         {
-            firstList.Remove(item);
+            if (cashMachineSecond - (item.price * item.amount) >= 0)
+            {
+                cashMachineFirst += item.price * item.amount;
+                cashMachineSecond -= item.price * item.amount;
+
+                firstList.Remove(item);
+            }
         }
 
         foreach (var item in itemsToAdd)
@@ -277,12 +299,11 @@ public class global_coins : MonoBehaviour
 
 
 
+        }
 
 
 
-
-
-    }
+    
 
 
 

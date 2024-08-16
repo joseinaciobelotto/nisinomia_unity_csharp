@@ -24,7 +24,7 @@ public class monsterDestroy : MonoBehaviour
     }
     void OnDestroy()
     {
-        if (monsterMax != null && !isQuiting)
+        if (monsterMax != null && isQuiting == false)
         {
             GameObject materiaDrop = Instantiate(materiaDropedPrefab, monsterPosition.position, Quaternion.identity);
             monsterMax.prefabDestroyed(prefabIndex);

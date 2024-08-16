@@ -88,10 +88,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 483091317808587006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58b004282f512074ca79c773660d2f8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 47ec9f26fe258614fa8e7f04e8339e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderAtack: {fileID: 0}
+  colliderAtack: {fileID: 4080694741428278341}
   atackHit: 0
 --- !u!1 &908422728818546813
 GameObject:
@@ -198,7 +198,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -244,6 +244,7 @@ MonoBehaviour:
   modfY: 0
   modfX: 0
   time: 0
+  time2: 0
   repeatTimeMax: 10
   repeatTimeMin: 0
   range: 0
@@ -252,6 +253,7 @@ MonoBehaviour:
   timeOfTransformTest: 0
   wallColisionHere: {fileID: 0}
   shipingBoxPosition: {fileID: 0}
+  goingToMonsters: {fileID: 0}
   lifeNow: 0
   lifeMax: 0
   damage: 0
@@ -260,12 +262,15 @@ MonoBehaviour:
   atackSpeed: 0
   atackRange: 0
   timeToAtack: 0
-  atackColliderHere: {fileID: 0}
-  atackHitColliderHere: {fileID: 0}
-  monsterIsNearHere: {fileID: 0}
+  atackColliderHere: {fileID: 5178432316746661815}
+  atackHitColliderHere: {fileID: 4481894647822446491}
+  monsterIsNearHere: {fileID: 7095282376984552642}
   atackDirection: {x: 0, y: 0, z: 0}
   aimObject: {fileID: 0}
   waponObject: {fileID: 0}
+  positionAtibuited: 0
+  timeCountAtack: 0
+  multiplyingZ: 1
 --- !u!1 &1277448416079241013
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +615,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc66f5549a045144a9b6ea0ae0d313a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderHitAtack: {fileID: 0}
+  spritHitBox: {fileID: 0}
+  monsterFighterHere: {fileID: 0}
+  monsterColisionHere: {fileID: 0}
+  strenght: 0.01
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &2879094480545676983
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,6 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192df295319ecc24388178b09cd9686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterFighterGoldAmout: 0
   materiaDataHere: {fileID: 0}
   resourceColectedList: []
   showResourceHere: {fileID: 0}
@@ -825,6 +837,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inColiMonster: {fileID: 0}
   monsterPositionHere: {fileID: 0}
+  colidingObject: []
+  shortestDistance: 0
+  objIndex: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!1 &3745981607141053367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,6 +1017,9 @@ MonoBehaviour:
   onCollisionWalls: 0
   time: 0
   repeatTime: 2
+  collision1: 
+  collision2: 
+  collision3: 
 --- !u!1 &9182060929256183691
 GameObject:
   m_ObjectHideFlags: 0

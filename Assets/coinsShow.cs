@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class coinsShow : MonoBehaviour
 {
-    public int coinsShowing;
+    public float coinsShowing;
     public int materiaShowing;
     public Text aaaa;
+    public Text bbbb;
+    public Text cccc;
     public laucher pineaplesAmout;
-    public Movement section;
+    public Movement MovementHere;
     public DayCycle daytime;
     public int dayTimeFormatMin;
     public int dayTimeFormatSec;
@@ -25,7 +27,7 @@ public class coinsShow : MonoBehaviour
 
         
         pineaplesAmout = FindAnyObjectByType<laucher>();
-        section = FindAnyObjectByType<Movement>();
+        MovementHere = FindAnyObjectByType<Movement>();
 
 
         daytime = FindAnyObjectByType<DayCycle>();
@@ -57,9 +59,20 @@ public class coinsShow : MonoBehaviour
 
         formatingMinutosSeconds();
 
-        aaaa.text = "Moedas: " + coinsShowing.ToString()+ " " +  "Recursos: "+materiaShowing+" " + 
-            "Produtos: " + pineaplesAmout.bagLimit.ToString() + " " + "Setor: " + section.sectionPlayerIsNow.ToString()+"°" + " " 
-            + "Horas: " + zeroMin + dayTimeFormatMin.ToString() +":" + zeroSec + dayTimeFormatSec.ToString();
+        aaaa.text =   "Vida: " + MovementHere.lifeNow + "/" + MovementHere.lifeMax + "\n"
+                    + "Dano: " + MovementHere.damage + "\n"
+                    + "Resistencia: " + MovementHere.resistence + "\n"
+                    + "Moedas: " + coinsShowing.ToString() + "\n"
+                    + "Recursos: " + materiaShowing + "\n"
+                    + "Produtos: " + pineaplesAmout.bagLimit.ToString() + "\n";
+     
+
+
+        bbbb.text =  "Dias: " + daytime.dayCount + "\n" +"Divida: " + MovementHere.debt + "C\n";
+
+        cccc.text = "" + zeroMin + dayTimeFormatMin.ToString() + ":" + zeroSec + dayTimeFormatSec.ToString() + "/"+ "1:00" ;
     }
+
+    //   + "Setor: " + section.sectionPlayerIsNow.ToString() + "°" + "\n"
 }
 

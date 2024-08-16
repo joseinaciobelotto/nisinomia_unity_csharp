@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DayCycle : MonoBehaviour
 {
     public float dayTime;
-    public int dayCount;
+    public int dayCount = 10;
 
     public bool isNight = false;
     public float nightTime;
@@ -29,6 +30,12 @@ public class DayCycle : MonoBehaviour
     void Update()
     {
         SleepCountFunc();
+
+        if (dayCount <= 0)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
     }
 
     void SleepCountFunc()
@@ -41,7 +48,7 @@ public class DayCycle : MonoBehaviour
             if (dayTime > endNighTime)
             {
                 isNight = false; 
-                dayCount++;
+                dayCount--;
                 dayTime = 0;
             }
 

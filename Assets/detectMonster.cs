@@ -52,7 +52,7 @@ public class detectMonster : MonoBehaviour
     void OnTriggerStay2D(Collider2D collision)
     {
         int aux = 0;
-        int aux2 = 0;
+        
         foreach (GameObject obj in colidingObject)
         {
 

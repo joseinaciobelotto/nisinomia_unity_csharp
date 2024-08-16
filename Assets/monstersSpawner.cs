@@ -31,11 +31,6 @@ public class monsterSpawner : MonoBehaviour
     [System.Serializable]
     public class monsterbData
     {
-
-
-
-
-
         public GameObject prefab;
         public int monstersSpawned;
         public int clientsMaxNum;
@@ -62,11 +57,12 @@ public class monsterSpawner : MonoBehaviour
     private void Update()
     {
         monstersAmout = monsterPrefabs.Count;
-
+       
         if (isNight == true)
         {
             randomNumber = Random.Range(0, monstersAmout);
-            clientSpawner2((int)randomNumber); 
+            clientSpawner2((int)randomNumber);
+            
         }
        
     }

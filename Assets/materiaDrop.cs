@@ -5,7 +5,7 @@ using UnityEngine;
 public class materiaDrop : MonoBehaviour
 {
     Rigidbody2D rig;
-    public int oneTime=0;
+    public int oneTime = 0;
     Vector3 leaveJump;
     Vector3 coinMoveVec;
     float randomSideY;
@@ -26,6 +26,7 @@ public class materiaDrop : MonoBehaviour
     public coinsShow coinsHere;
     public Movement playerPosition;
 
+    public bool isQuiting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +38,16 @@ public class materiaDrop : MonoBehaviour
         playerPosition = FindAnyObjectByType<Movement>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
+    {
+        if (isQuiting == true)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+        // Update is called once per frame
+        void FixedUpdate()
     {
 
         if (time > setTime || power <= 0)
@@ -68,7 +77,10 @@ public class materiaDrop : MonoBehaviour
 
         
     }
-
+   private void OnApplicationQuit()
+    {
+        isQuiting = true;
+    }
     void coinMove()
     {
 

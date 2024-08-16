@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerCoins : MonoBehaviour
 {
    
-    public int plaeyrCoinsAmount;
+    public float plaeyrCoinsAmount;
 
     public coinsShow coinsShowHere;
 

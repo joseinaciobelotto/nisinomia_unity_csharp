@@ -6,7 +6,7 @@ public class materiaData : MonoBehaviour
 {
 
     public string materiaName;
-
+    public float price;
 
 
 

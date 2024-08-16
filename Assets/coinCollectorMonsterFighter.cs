@@ -6,8 +6,12 @@ using UnityEngine;
 using static shopItemPrices3;
 
 public class coinCollectorMonsterFighter : MonoBehaviour
-{ 
+{
 
+
+
+
+    public float monsterFighterGoldAmout;
 
 
     public materiaData materiaDataHere;
@@ -24,7 +28,7 @@ public class coinCollectorMonsterFighter : MonoBehaviour
     {
         public string name;
         public float price;
-        public int amount                                     ;
+        public int amount;                                 
 
     }
 
@@ -80,6 +84,7 @@ public class coinCollectorMonsterFighter : MonoBehaviour
 
         resourceColected item = new resourceColected();
         item.name = collision.gameObject.GetComponent<materiaData>().materiaName;
+        item.price = collision.gameObject.GetComponent<materiaData>().price;
         item.amount++;
         resourceColectedList.Add(item);
         showResourceHere.formatingText();

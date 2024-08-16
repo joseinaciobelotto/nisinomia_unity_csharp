@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class monsterFighter : MonoBehaviour
@@ -33,6 +34,10 @@ public class monsterFighter : MonoBehaviour
     public float modfY;
     public float modfX;
     public float time;
+    public float time2;
+
+    public float distance;
+    public float distance2;
 
     public float repeatTimeMax;
     public float repeatTimeMin;
@@ -45,8 +50,8 @@ public class monsterFighter : MonoBehaviour
     public float timeOfTransformTest;
     public wallColision wallColisionHere;
 
-    public resourceShipingBox1 shipingBoxPosition;
-
+    public GameObject shipingBoxPosition;
+    public GameObject goingToMonsters;
 
     public float lifeNow;
     public float lifeMax;
@@ -78,14 +83,19 @@ public class monsterFighter : MonoBehaviour
             {
                 if (monsterPositionHere != null)
                 {
-                    TargetPosition(monsterPositionHere);
+                    TargetPosition(monsterPositionHere, haste);
                     AtackMode();
                 }
+
+            }
+            else
+            {
+                TargetPosition(goingToMonsters.transform, haste);
             }
         }
         else
         {
-            TargetPosition(shipingBoxPosition.transform);
+            TargetPosition(shipingBoxPosition.transform, haste);
         }
 
 
@@ -116,7 +126,7 @@ public class monsterFighter : MonoBehaviour
         atackHitColliderHere = FindAnyObjectByType<atackHitCollider>();
         monsterIsNearHere = FindAnyObjectByType<monsterIsNear>();
 
-        shipingBoxPosition = FindAnyObjectByType<resourceShipingBox1>();
+      
 
 
     }
@@ -145,26 +155,81 @@ public class monsterFighter : MonoBehaviour
 
     }
 
-    void TargetPosition(Transform targetTransform)
+    void TargetPosition(Transform targetTransform, Rigidbody2D thisTransform)
     {
-        if (targetTransform.transform.position.x < transform.position.x)
+
+        Vector3 fighterPosition = new Vector3(targetTransform.transform.position.x, targetTransform.transform.position.y, 0);
+
+
+        distance = Mathf.Pow((targetTransform.position.y - thisTransform.position.y), 2) + Mathf.Pow((targetTransform.position.x - thisTransform.position.x), 2);
+
+
+        if (time2 <= 0)
         {
-            modfX = -1f;
-        }
-        else if (targetTransform.transform.position.x > transform.position.x)
-        {
-            modfX = 1f;
-        }
-        if (targetTransform.transform.position.y < transform.position.y)
-        {
-            modfY = -1f;
-        }
-        else if (targetTransform.transform.position.y > transform.position.y)
-        {
-            modfY = 1f;
+
+            if (targetTransform.transform.position.x < transform.position.x)
+            {
+                modfX = -1f;
+            }
+            else if (targetTransform.transform.position.x > transform.position.x)
+            {
+                modfX = 1f;
+            }
+            if (targetTransform.transform.position.y < transform.position.y)
+            {
+                modfY = -1f;
+            }
+            else if (targetTransform.transform.position.y > transform.position.y)
+            {
+                modfY = 1f;
+            }
+            time2 = Random.Range(repeatTimeMin, repeatTimeMax);
+            distance2 = distance;
+
         }
 
+        if (haste.transform.position.x < fighterPosition.x + rangeOfTransformTest && haste.transform.position.x > fighterPosition.x - rangeOfTransformTest &&
+          haste.transform.position.y < fighterPosition.y + rangeOfTransformTest && haste.transform.position.x > fighterPosition.y - rangeOfTransformTest && wallColisionHere.time > timeOfTransformTest)
+        {
+           
+
+            modfX *= -Random.Range(-1f, 2f);
+            modfY *= -Random.Range(-1f, 2f);
+          
+            wallColisionHere.time = 0;
+           
+
+
+        }
+        else if(distance > distance2)
+        {
+            modfX *= -Random.Range(-1f, 2f);
+            modfY *= -Random.Range(-1f, 2f);
+            
+            wallColisionHere.time = 0;
+            distance2 = Mathf.Pow((targetTransform.position.y - thisTransform.position.y), 2) + Mathf.Pow((targetTransform.position.x - thisTransform.position.x), 2);
+
+        }
+
+
+        time2 -= Time.deltaTime;
+
+
+
     }
+
+    /*
+    public int randomAxiX(float a)
+    {
+      
+       
+    }*/
+/*
+    public float randomAxiY()
+    {
+      
+
+    }*/
 
     void TestingTranform(Rigidbody2D transformHere)
     {
@@ -209,7 +274,7 @@ public class monsterFighter : MonoBehaviour
             float tanValue = 0;
 
             Vector3 relativePosition = transform.InverseTransformPoint(aimObject.transform.position);
-
+                
             Vector3 lastPosition = new Vector3(0f, 0f, 0f);
             if (atackColliderHere.transform.position.x < (transform.position.x + atackRange) && atackColliderHere.transform.position.x > (transform.position.x - atackRange) &&
             atackColliderHere.transform.position.y < (transform.position.y + atackRange) && atackColliderHere.transform.position.y > (transform.position.y - atackRange))
@@ -269,23 +334,23 @@ public class monsterFighter : MonoBehaviour
                     else if (relativePosition.x < relativePosition.y)
                     {
                         tan = relativePosition.x / relativePosition.y;
-                        tan =   (180f / 3.14159265359f);
+                        tan *=   (180f / 3.14159265359f);
 
                     }
                     else if (relativePosition.x > relativePosition.y)
                     {
                         tan = relativePosition.y / relativePosition.x;
-                        tan = (180f / 3.14159265359f);
+                        tan *= (180f / 3.14159265359f);
 
                     }
                     else
                     {
                         tan = 1;
-                        tan =  (180f / 3.14159265359f);
+                        tan *=  (180f / 3.14159265359f);
                     }
                    
                  
-                    Debug.Log("X: " + relativePosition.x); Debug.Log("Y: " + relativePosition.y); Debug.Log("TAN: " + tan);
+                 //   Debug.Log("X: " + relativePosition.x); Debug.Log("Y: " + relativePosition.y); Debug.Log("TAN: " + tan);
                     /*
                    Debug.Log(tan);
                    float rad = (180f / 3.14159265359f)/4;
@@ -306,10 +371,10 @@ public class monsterFighter : MonoBehaviour
                     else if (timeCountAtack < 5f)
                     {
                         timeCountAtack +=0.1f;
-                        Debug.Log(Time.deltaTime);
+                        
                         atackHitColliderHere.transform.rotation = Quaternion.Euler(0f, 0f, multiplyingZ = multiplyingZ * atackSpeed);
 
-                        Debug.Log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                       
                     }
                     else
                     {
@@ -364,7 +429,7 @@ public class monsterFighter : MonoBehaviour
             {
 
                 // timeToAtack = 2;
-                atackColliderHere.colliderAtack.transform.position = transform.position; ;
+                atackColliderHere.colliderAtack.transform.position = transform.position; 
 
                 ColliderDisabled();
             }
