@@ -39,7 +39,7 @@ public class DayCycle : MonoBehaviour
     }
 
     void SleepCountFunc()
-    {
+    {   
 
         dayTime += Time.deltaTime;
 

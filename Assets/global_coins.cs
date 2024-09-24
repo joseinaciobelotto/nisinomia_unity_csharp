@@ -107,7 +107,7 @@ public class global_coins : MonoBehaviour
     void Update()
     {
 
-        if (dayTime.isNight == false && dayTime.dayCount > dayCalculationsCount)
+        if (dayTime.isNight == false && dayTime.dayCount < dayCalculationsCount)
         {
 
 
@@ -126,7 +126,7 @@ public class global_coins : MonoBehaviour
          
           
        
-            dayCalculationsCount++;
+            dayCalculationsCount--;
         }
 
     }
@@ -262,6 +262,7 @@ public class global_coins : MonoBehaviour
 
 
             }
+            Debug.Log(secondList.Count);
             if (secondList.Count == 0)
             {
                 auxNumResources++;

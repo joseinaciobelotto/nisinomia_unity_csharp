@@ -40,7 +40,7 @@ public class questScript : MonoBehaviour
         int aux = 0;
         int auxAux = 0;
         int[] auxlist = new int[10];
-        bool questComplet = false;
+        //bool questComplet = false;
 
         foreach (var resorces in coinColectorHere.resourceColectedList)
         {

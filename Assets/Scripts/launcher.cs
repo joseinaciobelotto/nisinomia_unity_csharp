@@ -12,6 +12,8 @@ public class laucher : MonoBehaviour
     public Colision inColiHere;
     public Movement joystick;
 
+    public GameObject poitZero;
+    public GameObject mouseObject;
     public resourceBoxColision inColiTentBoxHere;
 
     // Start is called before the first frame update
@@ -48,9 +50,9 @@ public class laucher : MonoBehaviour
         if (bagLimit > 0)
         {
 
-            if (Input.GetKeyDown(KeyCode.Mouse1) || joystick.joystickHere2.Horizontal < 0)
+            if (Input.GetKeyDown(KeyCode.Mouse0) || joystick.joystickHere2.Horizontal < 0)
             {
-                GameObject abacaxi = Instantiate(pineapplePrefab, leavingPoint.position, Quaternion.identity);
+                GameObject abacaxi = Instantiate(pineapplePrefab, poitZero.transform.position, Quaternion.identity);
                 bagLimit--;
             }
         }

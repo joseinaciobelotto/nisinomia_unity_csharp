@@ -7,7 +7,7 @@ public class destroyPine : MonoBehaviour
 
     
     public BoxCollider2D colid2;
-    public playerCoins coinsHere;
+    public player_coins coinsHere;
     public clientDestroy destroyEnemyScript;
   
 

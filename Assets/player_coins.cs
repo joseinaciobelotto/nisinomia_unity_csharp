@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerCoins : MonoBehaviour
+public class player_coins : MonoBehaviour
 {
    
     public float plaeyrCoinsAmount;

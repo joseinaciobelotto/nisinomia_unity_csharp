@@ -9,7 +9,7 @@ using static shopItemPrices3;
 public class coinColector : MonoBehaviour
 {
 
-    public playerCoins coinsHere; 
+    public player_coins coinsHere; 
     public materiaData materiaDataHere;
 
 
@@ -33,7 +33,7 @@ public class coinColector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        coinsHere = GetComponentInChildren<playerCoins>(); 
+        coinsHere = GetComponentInChildren<player_coins>(); 
         showResourceHere = FindAnyObjectByType<showResource>();
 
     }

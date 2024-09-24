@@ -22,7 +22,7 @@ public class knowlege : MonoBehaviour
     public GameObject know;
     public GameObject message;
 
-    public playerCoins playerCoinsHere;
+    public player_coins playerCoinsHere;
 
 
 
@@ -30,7 +30,7 @@ public class knowlege : MonoBehaviour
     void Start()
     {
         coinColectorHere = FindAnyObjectByType<coinColector>();
-        playerCoinsHere = FindAnyObjectByType < playerCoins >();
+        playerCoinsHere = FindAnyObjectByType < player_coins >();
         movementHere = FindAnyObjectByType < Movement >();
     }
 

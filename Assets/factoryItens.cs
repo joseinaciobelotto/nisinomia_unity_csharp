@@ -43,8 +43,8 @@ public class factoryItens : MonoBehaviour
         int aux = 0;
         int auxAux = 0;
         int[] auxlist = new int[10];
-        bool questComplet = false;
-        int numOfMix = 0;
+        //bool questComplet = false;
+      //  int numOfMix = 0;
         int whereIsFirst = 0;
         string chosed = "";
         foreach (var resorces in coinColectorHere.resourceColectedList)

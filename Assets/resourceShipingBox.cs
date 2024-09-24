@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.tvOS;
 using static global_coins;
 
 public class resourceShipingBox1 : MonoBehaviour
@@ -24,7 +23,7 @@ public class resourceShipingBox1 : MonoBehaviour
 
     public coinColector coinColectorPlayer;
 
-    public playerCoins playerCoinsHere;
+    public player_coins playerCoinsHere;
 
     public showResource showResourceHere;
     public showResourceMonsterFighter showResourceMonsterFighterHere;
@@ -36,7 +35,7 @@ public class resourceShipingBox1 : MonoBehaviour
         globalCoinsHere = FindAnyObjectByType<global_coins>();
         coinColectorHere = FindAnyObjectByType<coinCollectorMonsterFighter>();
         coinColectorPlayer = FindAnyObjectByType<coinColector>();
-        playerCoinsHere = FindAnyObjectByType<playerCoins>();
+        playerCoinsHere = FindAnyObjectByType<player_coins>();
 
         showResourceHere = FindAnyObjectByType<showResource>();
         showResourceMonsterFighterHere = FindAnyObjectByType<showResourceMonsterFighter>();
