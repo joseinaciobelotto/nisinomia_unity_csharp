@@ -1,2 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Ignorar arquivos ShaderLab
+*.shader linguist-generated
+
+# Ignorar arquivos HLSL
+*.hlsl linguist-generated
+*.cginc linguist-generated
